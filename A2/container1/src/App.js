@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { initializeApp } from "firebase/app";
 import { addDoc, doc, setDoc, getFirestore, Timestamp } from "firebase/firestore";
@@ -34,7 +33,11 @@ const ReadFromFS = async(event) => {
   let pass = String(event.target.pass.value);
   let location = event.target.location.value;
   let data = null;
-  //https://www.freecodecamp.org/news/how-to-use-the-firebase-database-in-react/
+  /*CITATION NOTE:
+  The following code used to retreive and map all documents in a Firestore collection
+  in React was adapted from the following source.
+  URL: https://www.freecodecamp.org/news/how-to-use-the-firebase-database-in-react/
+  */
   await getDocs(collection(db,"Reg")).then((snapshot)=>{
     data = snapshot.docs.map((doc) => ({id:doc.id, ...doc.data()}));
   })
@@ -45,7 +48,11 @@ const ReadFromFS = async(event) => {
     }
   }
   alert("Registration Successful!\nRedirecting to login page....");
-  //https://www.freecodecamp.org/news/how-to-use-the-firebase-database-in-react/
+  /*CITATION NOTE:
+  The following code used to create a document in a Firestore collection 
+  in React was adapted from the following source.
+  URL: https://www.freecodecamp.org/news/how-to-use-the-firebase-database-in-react/
+  */
   try{
     await addDoc(collection(db, "Reg"), {
       Name: name,
@@ -53,7 +60,11 @@ const ReadFromFS = async(event) => {
       Password: pass,
       Location: location
     });
-    //https://stackoverflow.com/questions/56406406/javascript-date-to-firestore-timestamp
+    /*CITATION NOTE:
+    The following code used to updated a specific, existing document in a 
+    Firestore collection in React was adapted from the following source.
+    URL: https://stackoverflow.com/questions/56406406/javascript-date-to-firestore-timestamp
+    */
     var now = Timestamp.fromDate(new Date());
     await setDoc(doc(db, "state", name), {
       OnlineStatus: false,

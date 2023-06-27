@@ -33,13 +33,22 @@ const ValidateUser = async (event) => {
   let data = null;
   let status = null;
   var now = Timestamp.fromDate(new Date());
-  //https://www.freecodecamp.org/news/how-to-use-the-firebase-database-in-react/
+  /*CITATION NOTE:
+  The following code used to retreive and map all documents in a Firestore collection
+  in React was adapted from the following source.
+  URL: https://www.freecodecamp.org/news/how-to-use-the-firebase-database-in-react/
+  */
   await getDocs(collection(db,"Reg")).then((snapshot)=>{
     data = snapshot.docs.map((doc) => ({id:doc.id, ...doc.data()}));
   }).then(async()=> {
     for(var i=0; i<data.length; i++){
       if(name.trim().toLowerCase()==data[i]['Name'].trim().toLowerCase()){
         if(pass==data[i]['Password']){
+          /*CITATION NOTE:
+          The following code used to updated a specific, existing document in a 
+          Firestore collection in React was adapted from the following source.
+          URL: https://stackoverflow.com/questions/56406406/javascript-date-to-firestore-timestamp
+          */
           await updateDoc(doc(db, "state", name), {
             OnlineStatus: true,
             LastUpdated: now

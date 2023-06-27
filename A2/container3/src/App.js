@@ -32,6 +32,11 @@ class App extends React.Component{
     };
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
+    /*CITATION NOTE:
+    The following code used to retreive and map all documents in a Firestore collection
+    in React was adapted from the following source.
+    URL: https://www.freecodecamp.org/news/how-to-use-the-firebase-database-in-react/
+    */
     await getDocs(collection(db, "Session")).then((snapshot)=>{
       let data = snapshot.docs.map((doc) => ({id:doc.id, ...doc.data()}));
       this.setState({currentUser:data[0]['Name']});
@@ -73,6 +78,11 @@ class App extends React.Component{
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
     var now = Timestamp.fromDate(new Date());
+    /*CITATION NOTE:
+    The following code used to updated a specific, existing document in a 
+    Firestore collection in React was adapted from the following source.
+    URL: https://stackoverflow.com/questions/56406406/javascript-date-to-firestore-timestamp
+    */
     await updateDoc(doc(db, "state", this.state.currentUser), {
       OnlineStatus: false,
       LastUpdated: now
