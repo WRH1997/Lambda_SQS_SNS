@@ -4,7 +4,6 @@ import { initializeApp } from "firebase/app";
 import { addDoc, doc, getFirestore, setDoc, Timestamp, updateDoc } from "firebase/firestore";
 import { collection, getDocs } from "firebase/firestore";
 import React, {useEffect, useState} from 'react';
-import { useNavigate } from 'react-router-dom';
 import creds from './credentials.json';
 
 class App extends React.Component{
@@ -82,7 +81,7 @@ class App extends React.Component{
       Name:"$$$"
     });
     alert("Successfully Logged out!\nRedirecting to Registration Page...");
-    //window.location.href = 'https://bobbyhadz.com';
+    window.location.href = 'https://container1-civ3vqnmnq-uc.a.run.app';
   }
 
   render(){

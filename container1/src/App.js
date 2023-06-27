@@ -64,7 +64,7 @@ const ReadFromFS = async(event) => {
     console.error(e);
     alert("Error: There was an issue uploading your data to Firstore: " + e);
   }
-  //window.location.href = 'https://bobbyhadz.com';
+  window.location.href = 'https://container2-civ3vqnmnq-uc.a.run.app';
 }
 
 

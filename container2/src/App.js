@@ -36,19 +36,19 @@ const ValidateUser = async (event) => {
   //https://www.freecodecamp.org/news/how-to-use-the-firebase-database-in-react/
   await getDocs(collection(db,"Reg")).then((snapshot)=>{
     data = snapshot.docs.map((doc) => ({id:doc.id, ...doc.data()}));
-  }).then(()=> {
+  }).then(async()=> {
     for(var i=0; i<data.length; i++){
       if(name.trim().toLowerCase()==data[i]['Name'].trim().toLowerCase()){
         if(pass==data[i]['Password']){
-          updateDoc(doc(db, "state", name), {
+          await updateDoc(doc(db, "state", name), {
             OnlineStatus: true,
             LastUpdated: now
           });
-          updateDoc(doc(db, "Session", "currSession"), {
+          await updateDoc(doc(db, "Session", "currSession"), {
             Name: name
           });
           alert("Log In Successful!\nRedirecting to Home Page....");
-          //window.location.href = 'https://bobbyhadz.com';
+          window.location.href = 'https://container3-civ3vqnmnq-uc.a.run.app';
           return;
         }
         alert("Error: Incorrect password!\nPlease verify your password and try again!");
