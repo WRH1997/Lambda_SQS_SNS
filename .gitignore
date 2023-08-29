@@ -1,10 +1,4 @@
-*/credentials.json
-./credentials.json
-*/.vscode
-*/.DS_Store/
-.DS_Store/
-./.DS_Store/
-*/.DS_Store
-./.DS_Store
-A3/Part_B/.DS_Store
-A3/Part_C/.DS_Store
+**/credentials.json
+**/.vscode
+**/.DS_Store
+**/.idea
